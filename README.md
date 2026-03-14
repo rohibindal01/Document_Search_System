@@ -6,8 +6,8 @@ RAG Search combines the power of semantic document retrieval with large language
 
 Features
 
-1. Semantic Search — Embeds documents and queries into vector space for similarity-based retrieval
-2. Augmented Generation — Feeds retrieved context into an LLM to generate grounded answers
-3. Streamlit UI — Clean, interactive web interface for querying the knowledge base
-4. CLI Support — Run queries directly from the terminal via main.py
-5. Local Data — Bring your own documents; data is stored and indexed locally in the data/ directory
+1. Semantic Search - Embeds documents and queries into vector space for similarity-based retrieval
+2. Augmented Generation - Feeds retrieved context into an LLM to generate grounded answers
+3. Streamlit UI - Clean, interactive web interface for querying the knowledge base
+4. CLI Support - Run queries directly from the terminal via main.py
+5. Local Data - Bring your own documents; data is stored and indexed locally in the data/ directory
