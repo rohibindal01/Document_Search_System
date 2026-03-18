@@ -20,8 +20,11 @@ class Config:
 
     # Default URLs
     DEFAULT_URLS = [
-        "https://lilianweng.github.io/posts/2023-06-23-agent/",
-        "https://lilianweng.github.io/posts/2024-04-12-diffusion-video/"
+        "https://www.dogsis.com/",
+        "https://www.companionanimalpsychology.com/p/all-about-dogs.html",
+        "https://www.dogbreedslist.info/all-dog-breeds/",
+        "https://thepetworld.org/dogs",
+        "https://www.dogster.com/lifestyle/most-popular-dog-websites"
     ]
 
     @classmethod
