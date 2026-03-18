@@ -73,9 +73,7 @@ It processes documents, converts them into embeddings, stores them in a vector d
 
 ```mermaid
 flowchart TD
-
     A[User - Streamlit UI] --> B[Query Interface]
-
     B --> C[RAG Agent Graph - GraphBuilder]
 
     C --> D[Vector Store - Retriever]
@@ -87,7 +85,6 @@ flowchart TD
 
     D --> I[Final Response]
     E --> I
-
 ---
 
 ## 📄 Detailed Project Information
