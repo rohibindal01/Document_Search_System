@@ -69,22 +69,23 @@ It processes documents, converts them into embeddings, stores them in a vector d
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
-```mermaid
-flowchart TD
-    A[User - Streamlit UI] --> B[Query Interface]
-    B --> C[RAG Agent Graph - GraphBuilder]
+User (Streamlit UI)
+        ↓
+Query Input
+        ↓
+RAG System (GraphBuilder)
+       / \
+      ↓   ↓
+Vector Store   LLM
+     ↓           ↓
+Document Data   Answer
+     ↓
+Processed Documents
+     ↓
+Source URL
 
-    C --> D[Vector Store - Retriever]
-    C --> E[LLM - Answer Generator]
-
-    D --> F[Document Embeddings]
-    F --> G[Document Processor]
-    G --> H[Source Data - URLs]
-
-    D --> I[Final Response]
-    E --> I
 ---
 
 ## 📄 Detailed Project Information
