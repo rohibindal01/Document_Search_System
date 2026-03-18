@@ -71,45 +71,22 @@ It processes documents, converts them into embeddings, stores them in a vector d
 
 ## 🏗️ Project Architecture
 
-                     ┌──────────────────────┐
-                     │        User          │
-                     │    (Streamlit UI)    │
-                     └──────────┬───────────┘
-                                │
-                                ▼
-                     ┌──────────────────────┐
-                     │   Query Interface    │
-                     │   (User Input Form)  │
-                     └──────────┬───────────┘
-                                │
-                                ▼
-                     ┌──────────────────────┐
-                     │   RAG Agent Graph    │
-                     │    (GraphBuilder)    │
-                     └───────┬───────┬──────┘
-                             │       │
-            ┌────────────────┘       └────────────────┐
-            ▼                                         ▼
- ┌──────────────────────┐                 ┌──────────────────────┐
- │     Vector Store     │                 │         LLM          │
- │   (Retriever Engine) │                 │  (Answer Generator)  │
- └──────────┬───────────┘                 └──────────┬───────────┘
-            │                                        │
-            ▼                                        ▼
- ┌──────────────────────┐                 ┌──────────────────────┐
- │  Document Embeddings │                 │    Final Response    │
- └──────────┬───────────┘                 └──────────────────────┘
-            │
-            ▼
- ┌──────────────────────┐
- │  Document Processor  │
- │ (Chunking + Parsing) │
- └──────────┬───────────┘
-            │
-            ▼
- ┌──────────────────────┐
- │   Source Data (URLs) │
- └──────────────────────┘
+```mermaid
+flowchart TD
+
+    A[User (Streamlit UI)] --> B[Query Interface]
+
+    B --> C[RAG Agent Graph (GraphBuilder)]
+
+    C --> D[Vector Store (Retriever)]
+    C --> E[LLM (Answer Generator)]
+
+    D --> F[Document Embeddings]
+    F --> G[Document Processor]
+    G --> H[Source Data (URLs)]
+
+    E --> I[Final Response]
+    D --> I
 
 ---
 
