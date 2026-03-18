@@ -69,6 +69,11 @@ It processes documents, converts them into embeddings, stores them in a vector d
 
 ---
 
+## Architecture
+
+## 🏗️ Project Architecture
+
+```
 User (Streamlit UI)
 │
 ▼
@@ -76,22 +81,22 @@ Query Input
 │
 ▼
 RAG Agent (GraphBuilder)
-├──► Vector Store (Retriever)
-│        │
-│        ▼
+├── Vector Store (Retriever)
+│   │
+│   ▼
 │   Document Embeddings
-│        │
-│        ▼
+│   │
+│   ▼
 │   Document Processor
-│        │
-│        ▼
+│   │
+│   ▼
 │   Source URLs
 │
-└──► LLM (Answer Generator)
-         │
-         ▼
-     Final Answer
-
+└── LLM (Answer Generator)
+    │
+    ▼
+    Final Answer
+```
 ---
 
 ## 📄 Detailed Project Information
