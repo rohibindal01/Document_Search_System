@@ -1,37 +1,174 @@
-🔍 RAG Search
+# 🤖 Agentic RAG Document Search System
 
-A Retrieval-Augmented Generation (RAG) powered search application built in Python, featuring both a command-line interface and an interactive Streamlit web UI.
+## 📌 Project Overview
 
-📖 Overview
+This project is an **Agentic Retrieval-Augmented Generation (RAG) system** built with a **Streamlit UI** that allows users to ask questions over a set of documents (fetched from URLs).
 
-RAG Search combines the power of semantic document retrieval with large language model generation to answer queries grounded in your own data. Instead of relying solely on a model's training knowledge, the system first retrieves the most relevant document chunks from a local data store and then passes them as context to the LLM - producing accurate, source-backed responses.
+It processes documents, converts them into embeddings, stores them in a vector database, and uses an LLM-powered agent to retrieve and generate accurate answers.
 
-✨ Features
+---
 
-1. Semantic Search - Embeds documents and queries into vector space for similarity-based retrieval
-2. Augmented Generation - Feeds retrieved context into an LLM to generate grounded answers
-3. Streamlit UI - Clean, interactive web interface for querying the knowledge base
-4. CLI Support - Run queries directly from the terminal via main.py
-5. Local Data - Bring your own documents; data is stored and indexed locally in the data/ directory
+## 🔄 Basic Flow of the Project
 
-📂 Adding Your Data
+1. **Application Startup**
+   - The Streamlit app (`streamlit_app.py`) initializes the UI.
+   - Session state is prepared to store system state and history.
 
-Place your source documents in the data/ directory. Supported formats depend on the loaders configured in src/. After adding new documents, re-run the indexing step (if applicable) before querying.
+2. **System Initialization**
+   - LLM is loaded using configuration settings.
+   - Documents are fetched from predefined URLs.
+   - Documents are split into chunks.
 
-🖥️ Usage
+3. **Data Processing**
+   - Processed documents are embedded.
+   - Embeddings are stored in a vector database.
 
-1. Streamlit Web App
+4. **Graph Construction (Agentic RAG)**
+   - A graph-based pipeline is built using:
+     - Retriever (Vector Store)
+     - LLM
+   - This enables intelligent query handling.
 
-run streamlit_app.py
-Open your browser at http://localhost:8501 and start querying your documents through the interactive UI.
+5. **User Query Flow**
+   - User enters a question in the UI.
+   - Query is passed to the RAG system.
+   - Relevant documents are retrieved.
+   - LLM generates a final answer.
 
-2. Command-Line Interface
+6. **Response Display**
+   - Answer is shown in the UI.
+   - Source documents are displayed.
+   - Query history is maintained.
 
-run python main.py
-Follow the prompts to enter a query and receive a RAG-generated response directly in your terminal.
+---
 
-📂 Adding Your Data
+## 🛠️ Technologies Used
 
-Place your source documents in the data/ directory. Supported formats depend on the loaders configured in src/. After adding new documents, re-run the indexing step (if applicable) before querying.
+### 👨‍💻 Frontend
+- Streamlit (Interactive UI)
 
+### 🧠 AI / ML
+- Large Language Models (LLMs)
+- Retrieval-Augmented Generation (RAG)
+- Embeddings
 
+### ⚙️ Backend Components
+- Python
+- Custom Modular Architecture:
+  - `DocumentProcessor`
+  - `VectorStore`
+  - `GraphBuilder`
+  - `Config`
+
+### 📦 Data Handling
+- Document chunking
+- URL-based document ingestion
+
+### 🗄️ Storage
+- Vector Database (for embeddings & retrieval)
+
+---
+
+## 🏗️ Project Architecture
+
+                     ┌──────────────────────┐
+                     │        User          │
+                     │    (Streamlit UI)    │
+                     └──────────┬───────────┘
+                                │
+                                ▼
+                     ┌──────────────────────┐
+                     │   Query Interface    │
+                     │   (User Input Form)  │
+                     └──────────┬───────────┘
+                                │
+                                ▼
+                     ┌──────────────────────┐
+                     │   RAG Agent Graph    │
+                     │    (GraphBuilder)    │
+                     └───────┬───────┬──────┘
+                             │       │
+            ┌────────────────┘       └────────────────┐
+            ▼                                         ▼
+ ┌──────────────────────┐                 ┌──────────────────────┐
+ │     Vector Store     │                 │         LLM          │
+ │   (Retriever Engine) │                 │  (Answer Generator)  │
+ └──────────┬───────────┘                 └──────────┬───────────┘
+            │                                        │
+            ▼                                        ▼
+ ┌──────────────────────┐                 ┌──────────────────────┐
+ │  Document Embeddings │                 │    Final Response    │
+ └──────────┬───────────┘                 └──────────────────────┘
+            │
+            ▼
+ ┌──────────────────────┐
+ │  Document Processor  │
+ │ (Chunking + Parsing) │
+ └──────────┬───────────┘
+            │
+            ▼
+ ┌──────────────────────┐
+ │   Source Data (URLs) │
+ └──────────────────────┘
+
+---
+
+## 📄 Detailed Project Information
+
+### 🔧 Core Components
+
+#### 1. Config
+- Handles:
+  - LLM initialization
+  - Default URLs
+  - Chunk size & overlap
+
+#### 2. DocumentProcessor
+- Fetches documents from URLs
+- Splits into manageable chunks for embedding
+
+#### 3. VectorStore
+- Converts document chunks into embeddings
+- Stores them for similarity search
+- Provides retriever interface
+
+#### 4. GraphBuilder
+- Builds an **agentic pipeline**
+- Connects:
+  - Retriever
+  - LLM
+- Executes query flow using `.run()`
+
+---
+
+### 🔍 Key Features
+
+- ✅ Ask questions over documents  
+- ✅ Automatic document ingestion from URLs  
+- ✅ Semantic search using embeddings  
+- ✅ Source document transparency  
+- ✅ Query history tracking  
+- ✅ Fast responses with caching (`@st.cache_resource`)
+
+---
+
+### 🧑‍💻 User Interface
+
+- Clean Streamlit interface
+- Input form for queries
+- Expandable source document viewer
+- Response time tracking
+- Search history display
+
+---
+
+## 🚀 How It Works (In Simple Terms)
+
+1. Load documents from the internet  
+2. Break them into small chunks  
+3. Convert chunks into embeddings  
+4. Store embeddings in a vector database  
+5. When user asks a question:
+   - Find similar chunks
+   - Send them to the LLM
+   - Generate a precise answer  
